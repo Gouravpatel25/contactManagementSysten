@@ -3,6 +3,8 @@ package driverPackage;
 import java.util.Scanner;
 import contactManagementSystem.Contact;
 import contactManagementSystem.ContactManager;
+import exceptions.IncorrectPhNumberLength;
+import exceptions.IncorrectNameFormatException;
 
 public class DriverClass {
 
@@ -22,9 +24,9 @@ public class DriverClass {
             System.out.println(" 6 - Update Contact");
             System.out.println(" 7 - Exit");
             System.out.print("Enter your choice: ");
-            
+
             int choice = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
@@ -37,7 +39,13 @@ public class DriverClass {
                     String phNo = sc.nextLine();
                     System.out.print("Enter Email: ");
                     String email = sc.nextLine();
-                    cm.addContact(new Contact(id, name, phNo, email));
+
+                    try {
+                        cm.addContact(new Contact(id, name, phNo, email));
+                    } 
+                    catch (IncorrectPhNumberLength | IncorrectNameFormatException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
 
                 case 2:
@@ -72,7 +80,13 @@ public class DriverClass {
                     String newPhone = sc.nextLine();
                     System.out.print("Enter new Email: ");
                     String newEmail = sc.nextLine();
-                    cm.updateContact(updateId, newName, newPhone, newEmail);
+
+                    try {
+                        cm.updateContact(updateId, newName, newPhone, newEmail);
+                    } 
+                    catch (IncorrectPhNumberLength | IncorrectNameFormatException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
 
                 case 7:
