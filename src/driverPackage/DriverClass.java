@@ -91,7 +91,7 @@ public class DriverClass {
 
                 case 7:
                     flag = false;
-                    System.out.println("Exiting the program. Goodbye!");
+                    System.out.println("Exiting successfully");
                     break;
 
                 default:
