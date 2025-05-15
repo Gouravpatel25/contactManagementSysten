@@ -3,12 +3,13 @@ package driverPackage;
 import java.util.Scanner;
 import contactManagementSystem.Contact;
 import contactManagementSystem.ContactManager;
+
 import exceptions.IncorrectPhNumberLength;
 import exceptions.IncorrectNameFormatException;
 
 public class DriverClass {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
         ContactManager cm = new ContactManager();
 
@@ -25,8 +26,13 @@ public class DriverClass {
             System.out.println(" 7 - Exit");
             System.out.print("Enter your choice: ");
 
-            int choice = sc.nextInt();
-            sc.nextLine();
+            String choiceInput = sc.nextLine();
+            if (!isNumeric(choiceInput)) {
+                System.out.println("Invalid input. Please enter a number between 1 - 7");
+                continue;
+            }
+
+            int choice = Integer.parseInt(choiceInput);
 
             switch (choice) {
                 case 1:
@@ -100,5 +106,9 @@ public class DriverClass {
         }
 
         sc.close();
+    }
+    
+    private static boolean isNumeric(String str) {
+        return str.matches("\\d+");
     }
 }
